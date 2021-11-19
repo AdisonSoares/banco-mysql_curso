@@ -1,0 +1,16 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Livros (
+Nome do Autor VARCHAR(30),
+Ano da Publicaçao VARCHAR(4),
+UF da Editora VARCHAR(2),
+Sexo do Autor VARCHAR(10),
+Nome do Livro VARCHAR(30),
+Valor do Livro NUMERIC(10),
+Nome da Editora VARCHAR(30),
+Número de Páginas VARCHAR(30)
+)
+

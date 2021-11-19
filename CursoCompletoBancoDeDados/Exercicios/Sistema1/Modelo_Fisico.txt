@@ -1,0 +1,28 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Endereço+Cliente (
+Cidade VARCHAR(10),
+Logradouro VARCHAR(10),
+CEP VARCHAR(10),
+Email VARCHAR(10),
+Sexo VARCHAR(10),
+CPF VARCHAR(10) PRIMARY KEY,
+Nome VARCHAR(10),
+Ano_Nascimento VARCHAR(10)
+)
+
+CREATE TABLE Telefone (
+Fixo VARCHAR(10) PRIMARY KEY,
+Celular VARCHAR(10)
+)
+
+CREATE TABLE Possui (
+Fixo VARCHAR(10),
+CPF VARCHAR(10),
+FOREIGN KEY(Fixo) REFERENCES Telefone (Fixo),
+FOREIGN KEY(CPF) REFERENCES Endereço+Cliente (CPF)
+)
+
