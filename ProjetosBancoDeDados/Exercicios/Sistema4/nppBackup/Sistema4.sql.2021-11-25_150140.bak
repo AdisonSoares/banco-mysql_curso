@@ -101,7 +101,7 @@ OR
 DEPARTAMENTO = 'JARDIM';
 
 --EXPLICAÇÃO:
---Como está sendo usado OR nesse caso tendo a segunda consulta lógica opcional
+--Como está sendo usado o OR nesse caso tendo a segunda consulta lógica opcional
 --colocamos na primeira condição quem tem mais chances de uma saída verdadeira,
 --pois a segunda condição não precisará ser consultada para validar.
 
