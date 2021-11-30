@@ -91,7 +91,6 @@ SELECT COUNT(*), DEPARTAMENTO
 FROM FUNCIONARIOS
 GROUP BY DEPARTAMENTO;
 
-
 --OBSERVAÇÕES:
 --Existem 47 funcionários do setor Jardim
 
