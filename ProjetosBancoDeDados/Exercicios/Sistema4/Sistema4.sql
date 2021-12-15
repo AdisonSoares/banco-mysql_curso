@@ -1,3 +1,23 @@
+
+--CRIAÇAO DO BANDO DE DADOS:
+CREATE DATABASE EXERCICIO;
+
+USE EXERCICIO;
+
+CREATE TABLE FUNCIONARIOS(
+	idFuncionario integer,
+	nome varchar(100),
+	email varchar(200),
+	sexo varchar(10),
+	departamento varchar(100),
+	admissao varchar(10),
+	salario integer,
+	cargo varchar(100),
+	idRegiao int
+);
+
+---------------------------------------------------------------------------------------------------------------
+
 --QUESTÃO:
 --Contar todos os registros.
 
@@ -107,23 +127,6 @@ DEPARTAMENTO = 'JARDIM';
 --pois a segunda condição não precisará ser consultada para validar.
 
 ---------------------------------------------------------------------------------------------------------------
-
---CRIAÇAO DO BANDO DE DADOS:
-CREATE DATABASE EXERCICIO;
-
-USE EXERCICIO;
-
-CREATE TABLE FUNCIONARIOS(
-	idFuncionario integer,
-	nome varchar(100),
-	email varchar(200),
-	sexo varchar(10),
-	departamento varchar(100),
-	admissao varchar (10),
-	salario integer,
-	cargo varchar(100),
-	idRegiao int
-);
 
 insert into funcionarios values (1,'Kelley','rkelley0@soundcloud.com','Feminino','Computadores','10/2/2009',67470,'Structural Engineer',2);
 insert into funcionarios values (2,'Armstrong','sarmstrong1@infoseek.co.jp','Masculino','Esporte','3/31/2008',71869,'Financial Advisor',2);
