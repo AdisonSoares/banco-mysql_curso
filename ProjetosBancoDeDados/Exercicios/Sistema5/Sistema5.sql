@@ -352,3 +352,47 @@ FROM CLIENTE C
 | MARIA    | F    | CENTRO | RIO DE JANEIRO | RES  | 85853033  |
 | MARIA    | F    | CENTRO | RIO DE JANEIRO | RES  | 41853033  |
 +----------+------+--------+----------------+------+-----------+    
+
+/********************************************************************************************************/
+
+/*O MYSQL SE DIVIDE EM LINGUAGENS:
+-DML: DATA MANIPULATION LANGUAGE 
+-DDL: DATA DEFINITION LANGUAGE
+-DCL: DATA CONTROL LANGUAGE
+-TCL: TRANSACTION CONTROL LANGUAGE*/        
+
+
+/*COMANDOS DE DML*/
+/*INSERT*/
+
+INSERT INTO CLIENTE VALUES(NULL, 'PAULA', 'M', NULL,'45853033')
+INSERT INTO ENDERECO VALUES(NULL, 'RUA JOAQUIM', 'ALVORADA', NITEROI,'RJ',7);
+SELECT * FROM CLIENTE;
+
+/*FILTROS*/
+
+SELECT * FROM CLIENTE
+WHERE SEXO = 'M';
+
+/*UPDATE*/
+/*CONSULTA*/
+SELECT * FROM CLIENTE
+WHERE IDCLIENTE = 7;
+
+/*UPDATE - ATUALIZAÇÃO*/
+UPDATA CLIENTE
+SET SEXO = 'F'
+WHERE IDCLIENTE = 7;
+
+/*DELETE*/
+
+INSERT INTO CLIENTE VALUES(NULL, 'YYYYY', 'M', NULL,'000000')
+
+/*CONSULTAR*/
+SELECT * FROM CLIENTE
+WHERE IDCLIENTE = 8;
+
+/*DELETAR*/
+DELETE FROM CLIENTE WHERE IDCLIENTE = 8;
+
+/********************************************************************************************************/
