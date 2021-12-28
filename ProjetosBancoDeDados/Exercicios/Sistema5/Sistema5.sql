@@ -200,3 +200,111 @@ WHERE SEXO = 'F'; /*-> SELEÇÃO*/
 SELECT NUMERO /*--> PROJEÇÃO*/
 FROM TELEFONE /*--> ORIGEM*/
 WHERE TIPO = 'CEL'; /*--> SELEÇÃO*/
+
+/*JUNÇÃO DE DUAS OU MAIS TABELAS - JOIN*/
+SELECT NOME, EMAIL, IDCLIENTE /*--> PROJEÇÃO*/
+FROM CLIENTE; /*--> ORIGEM*/
+
++----------+--------------------+-----------+
+| NOME     | EMAIL              | IDCLIENTE |
++----------+--------------------+-----------+
+| GILSON   | GILSON@GMAIL.COM   |         1 |
+| FERNANDO | FERNANDO@GMAIL.COM |         2 |
+| MARIA    | MARIA@GMAIL.COM    |         3 |
+| CAROL    | NULL               |         4 |
+| JOEL     | JOEL@GMAIL.COM     |         5 |
+| GABRIELA | GABRILEA@GMAIL.COM |         6 |
++----------+--------------------+-----------+
+
+SELECT ID_CLIENTE, BAIRRO, CIDADE /*--> PROJEÇÃO*/
+FROM ENDEREÇO; /*--> ORIGEM*/
++------------+--------+----------------+
+| ID_CLIENTE | BAIRRO | CIDADE         |
++------------+--------+----------------+
+|          1 | CENTRO | RIO DE JANEIRO |
+|          2 | CENTRO | RIO DE JANEIRO |
+|          3 | CENTRO | RIO DE JANEIRO |
+|          4 | CENTRO | RIO DE JANEIRO |
+|          5 | CENTRO | RIO DE JANEIRO |
+|          6 | CENTRO | RIO DE JANEIRO |
++------------+--------+----------------+
+
+/*PROJETAR NOME, SEXO, BAIRRO, CIDADE - UNIFICAR A CHAVE PRIMARIA COM A CHAVE ESTRANGEIRA*/
+SELECT NOME, SEXO, BAIRRO, CIDADE /*--> PROJEÇÃO*/
+FROM CLIENTE, ENDERECO /*--> ORIGEM*/
+WHERE IDCLIENTE = ID_CLIENTE; /*--> JUNÇÃO*/
+
++----------+------+--------+----------------+
+| NOME     | SEXO | BAIRRO | CIDADE         |
++----------+------+--------+----------------+
+| GILSON   | M    | CENTRO | RIO DE JANEIRO |
+| FERNANDO | M    | CENTRO | RIO DE JANEIRO |
+| MARIA    | F    | CENTRO | RIO DE JANEIRO |
+| CAROL    | F    | CENTRO | RIO DE JANEIRO |
+| JOEL     | M    | CENTRO | RIO DE JANEIRO |
+| GABRIELA | F    | CENTRO | RIO DE JANEIRO |
++----------+------+--------+----------------+
+
+/*FAZENDO COM FILTRO*/
+SELECT NOME, SEXO, BAIRRO, CIDADE
+FROM CLIENTE, ENDERECO
+WHERE IDCLIENTE = ID_CLIENTE /*--> TABELA VERDADE*/
+AND SEXO = 'F'; /*--> TABELA VERDADE*/
++----------+------+--------+----------------+
+| NOME     | SEXO | BAIRRO | CIDADE         |
++----------+------+--------+----------------+
+| MARIA    | F    | CENTRO | RIO DE JANEIRO |
+| CAROL    | F    | CENTRO | RIO DE JANEIRO |
+| GABRIELA | F    | CENTRO | RIO DE JANEIRO |
++----------+------+--------+----------------+
+
+/*CLAUSULA JOIN*/
+SELECT NOME, SEXO, BAIRRO, CIDADE
+FROM CLIENTE
+INNER JOIN ENDERECO
+ON IDCLIENTE = ID_CLIENTE;
++----------+------+--------+----------------+
+| NOME     | SEXO | BAIRRO | CIDADE         |
++----------+------+--------+----------------+
+| GILSON   | M    | CENTRO | RIO DE JANEIRO |
+| FERNANDO | M    | CENTRO | RIO DE JANEIRO |
+| MARIA    | F    | CENTRO | RIO DE JANEIRO |
+| CAROL    | F    | CENTRO | RIO DE JANEIRO |
+| JOEL     | M    | CENTRO | RIO DE JANEIRO |
+| GABRIELA | F    | CENTRO | RIO DE JANEIRO |
++----------+------+--------+----------------+
+
+/*FAZENDO COM FILTRO - QUERY COMPLETA*/
+SELECT NOME, SEXO, BAIRRO, CIDADE /*--> PROJEÇÃO*/
+FROM CLIENTE /*--> ORIGEM*/
+    INNER JOIN ENDERECO /*--> JUNÇÃO*/
+    ON IDCLIENTE = ID_CLIENTE /*--> CONDIÇAO*/
+WHERE SEXO = 'F'; /*--> SELEÇAO*/
++----------+------+--------+----------------+
+| NOME     | SEXO | BAIRRO | CIDADE         |
++----------+------+--------+----------------+
+| MARIA    | F    | CENTRO | RIO DE JANEIRO |
+| CAROL    | F    | CENTRO | RIO DE JANEIRO |
+| GABRIELA | F    | CENTRO | RIO DE JANEIRO |
++----------+------+--------+----------------+
+
+/*CONSULTA NOME, SEXO, EMAIL, TIPO, NUMERO*/
+SELECT NOME, SEXO, EMAIL, TIPO, NUMERO /*--> PROJEÇÃO*/
+FROM CLIENTE /*--> ORIGEM*/
+    INNER JOIN TELEFONE /*--> JUNÇÃO*/
+    ON IDCLIENTE = ID_CLIENTE; /*--> CONDIÇAO*/
++----------+------+--------------------+------+-----------+
+| NOME     | SEXO | EMAIL              | TIPO | NUMERO    |
++----------+------+--------------------+------+-----------+
+| GILSON   | M    | GILSON@GMAIL.COM   | RES  | 45853033  |
+| GILSON   | M    | GILSON@GMAIL.COM   | COM  | 35853033  |
+| GILSON   | M    | GILSON@GMAIL.COM   | CEL  | 990891200 |
+| GILSON   | M    | GILSON@GMAIL.COM   | RES  | 51853033  |
+| FERNANDO | M    | FERNANDO@GMAIL.COM | CEL  | 921678801 |
+| FERNANDO | M    | FERNANDO@GMAIL.COM | CEL  | 971406822 |
+| FERNANDO | M    | FERNANDO@GMAIL.COM | COM  | 34853033  |
+| FERNANDO | M    | FERNANDO@GMAIL.COM | RES  | 40853033  |
+| MARIA    | F    | MARIA@GMAIL.COM    | RES  | 25853033  |
+| MARIA    | F    | MARIA@GMAIL.COM    | RES  | 85853033  |
+| MARIA    | F    | MARIA@GMAIL.COM    | RES  | 41853033  |
++----------+------+--------------------+------+-----------+
