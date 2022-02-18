@@ -20,5 +20,6 @@ de dados focado em SQL Server, MySQL e Oracle, com introdução nas linguagens T
 - Procedures</br>
 - Functions e Views</br>
 - Utilizar o Dicionário de Dados</br>
-- Utilizar softwares de modelagem, Aplicar seguramente os relacionamentos 1 x 1 , 1 x N, N x N</br>
+- Utilizar softwares de modelagem</br>
+- Aplicar seguramente os relacionamentos 1 x 1 , 1 x N, N x N</br>
 - Generalização e Autorelacionamento</br>
