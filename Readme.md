@@ -1,4 +1,4 @@
-# Banco De Dados Completo - Prática na modelagem de banco de dados</br></br>
+# Banco De Dados Completo - Prática na modelagem de banco de dados</br>
 
 
 ### APRESENTAÇÃO
