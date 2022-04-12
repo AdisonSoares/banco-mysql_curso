@@ -23,3 +23,7 @@ de dados focado em SQL Server, MySQL e Oracle, com introdução nas linguagens T
 - Utilizar softwares de modelagem</br>
 - Aplicar seguramente os relacionamentos 1 x 1 , 1 x N, N x N</br>
 - Generalização e Autorelacionamento</br>
+
+<h4 align="center"> 
+	🚧  Em construção...  🚧
+</h4>
