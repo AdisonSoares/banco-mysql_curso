@@ -1,3 +1,5 @@
+/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
+
 /*Criando o banco de dados - Modelagem Física - Scripts de Banco*/
 
 /*Criando o Banco de Dados*/

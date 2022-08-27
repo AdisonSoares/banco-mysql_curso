@@ -263,6 +263,8 @@ WHERE NOME = 'JOAO';
 /*CONSULTAR DADOS COMPLETOS DA TABELA*/
 SELECT * FROM CLIENTE;
 
+/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
+
 /*PRIMEIRA FORMA NORMAL
  REGRAS:
 

@@ -70,6 +70,8 @@ SELECT NOME_DO_AUTOR, SEXO_DO_AUTOR, UF_DA_EDITORA  FROM LIVROS
 WHERE (UF_DA_EDITORA = 'SP') OR (UF_DA_EDITORA = 'RJ') AND (SEXO_DO_AUTOR = 'Masculino');
 
 
+/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
+
 /*Antes precisa conectar ao banco com a tabela cliente
 **Use Projeto;*/
 /*Operadores Lógicos*/
