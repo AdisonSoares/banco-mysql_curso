@@ -1,5 +1,4 @@
 /*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
-
 /*SOBRE A CARDINALIDADE
 Quem define a cardinalidade é a regra de negócio.
 A definição de cada valor do algarismo é da seguinte forma:

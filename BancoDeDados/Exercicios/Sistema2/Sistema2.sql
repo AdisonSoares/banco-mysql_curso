@@ -1,3 +1,4 @@
+/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
 /*Modelagem Física - Scripts de Banco*/
 /*Criando o banco de dados:*/
 CREATE DATABASE LIVRARIA;
@@ -49,47 +50,160 @@ NOME_DA_EDITORA, VALOR_DO_LIVRO, UF_DA_EDITORA, ANO_DA_PUBLICACAO)VALUES('Pessoa
 /*Consultas/Queries:*/
 /*Tabela inteira*/
 SELECT * FROM LIVROS;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++---------------+-------------------+----------------+-------------------+---------------+------------------+---------------------+-----------------+
+| UF_DA_EDITORA | ANO_DA_PUBLICACAO | VALOR_DO_LIVRO | NUMERO_DE_PAGINAS | SEXO_DO_AUTOR | NOME_DO_AUTOR    | NOME_DO_LIVRO       | NOME_DA_EDITORA |
++---------------+-------------------+----------------+-------------------+---------------+------------------+---------------------+-----------------+
+| RJ            | 2009              |           49.9 | 465               | Feminino      | Ana Claudia      | Cavaleiro Real      | Atlas           |
+| SP            | 2018              |             98 | 450               | Masculino     | João Nunes       | SQL para Leigos     | Addison         |
+| RJ            | 2008              |             45 | 210               | Feminino      | Celia Tavares    | Receitas Caseiras   | Atlas           |
+| RJ            | 2018              |          78.99 | 390               | Masculino     | Eduardo Santos   | Pessoas Efetivas    | Beta            |
+| RJ            | 2019              |         150.98 | 630               | Masculino     | Eduardo Santos   | Hábitos Saudáveis   | Beta            |
+| MG            | 2016              |             60 | 250               | Masculino     | Hermes Macedo    | A Casa Marrom       | Bubba           |
+| ES            | 2015              |            100 | 310               | Masculino     | Geraldo Franciso | Estacio Querido     | Insignia        |
+| ES            | 2011              |          78.98 | 510               | Feminino      | Leda Silva       | Pra sempre amiga    | Insignia        |
+| RS            | 2018              |         130.98 | 200               | Masculino     | Marco Alcântara  | Copas Inesqueciveis | Larson          |
+| RS            | 2017              |          56.58 | 120               | Feminino      | Clara Mafra      | O poder da mente    | Continental     |
++---------------+-------------------+----------------+-------------------+---------------+------------------+---------------------+-----------------+
+
 
 /*Nome do livro e nome da editora*/
 SELECT NOME_DO_LIVRO, NOME_DA_EDITORA FROM LIVROS;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++---------------------+-----------------+
+| NOME_DO_LIVRO       | NOME_DA_EDITORA |
++---------------------+-----------------+
+| Cavaleiro Real      | Atlas           |
+| SQL para Leigos     | Addison         |
+| Receitas Caseiras   | Atlas           |
+| Pessoas Efetivas    | Beta            |
+| Hábitos Saudáveis   | Beta            |
+| A Casa Marrom       | Bubba           |
+| Estacio Querido     | Insignia        |
+| Pra sempre amiga    | Insignia        |
+| Copas Inesqueciveis | Larson          |
+| O poder da mente    | Continental     |
++---------------------+-----------------+
+
 
 /*Nome e UF dos livros por autores masculinos*/
 SELECT NOME_DO_LIVRO,UF_DA_EDITORA FROM LIVROS
 WHERE SEXO_DO_AUTOR = 'Masculino';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++---------------------+---------------+
+| NOME_DO_LIVRO       | UF_DA_EDITORA |
++---------------------+---------------+
+| SQL para Leigos     | SP            |
+| Pessoas Efetivas    | RJ            |
+| Hábitos Saudáveis   | RJ            |
+| A Casa Marrom       | MG            |
+| Estacio Querido     | ES            |
+| Copas Inesqueciveis | RS            |
++---------------------+---------------+
+
 
 /*Nome e paginas dos livros por autores femininos*/
 SELECT NOME_DO_LIVRO,NUMERO_DE_PAGINAS FROM LIVROS
 WHERE SEXO_DO_AUTOR = 'Feminino';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++-------------------+-------------------+
+| NOME_DO_LIVRO     | NUMERO_DE_PAGINAS |
++-------------------+-------------------+
+| Cavaleiro Real    | 465               |
+| Receitas Caseiras | 210               |
+| Pra sempre amiga  | 510               |
+| O poder da mente  | 120               |
++-------------------+-------------------+
+
 
 /*Valores dos livros da editora de SP*/
 SELECT VALOR_DO_LIVRO FROM LIVROS
 WHERE UF_DA_EDITORA = 'SP';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++----------------+
+| VALOR_DO_LIVRO |
++----------------+
+|             98 |
++----------------+
+
 
 /*Autores masculinos com livros publicados em SP ou RJ*/
 SELECT NOME_DO_AUTOR, SEXO_DO_AUTOR, UF_DA_EDITORA  FROM LIVROS
 WHERE (UF_DA_EDITORA = 'SP') OR (UF_DA_EDITORA = 'RJ') AND (SEXO_DO_AUTOR = 'Masculino');
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++----------------+---------------+---------------+
+| NOME_DO_AUTOR  | SEXO_DO_AUTOR | UF_DA_EDITORA |
++----------------+---------------+---------------+
+| João Nunes     | Masculino     | SP            |
+| Eduardo Santos | Masculino     | RJ            |
+| Eduardo Santos | Masculino     | RJ            |
++----------------+---------------+---------------+
 
-
-/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
 
 /*Antes precisa conectar ao banco com a tabela cliente
 **Use Projeto;*/
 /*Operadores Lógicos*/
 /* OR - OU*/
 SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'F' OR ENDERECO LIKE '%RJ';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++--------+------+------------------------------------------------+
+| NOME   | SEXO | ENDERECO                                       |
++--------+------+------------------------------------------------+
+| JOAO   | M    | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ   |
+| CELIA  | F    | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ       |
+| LILIAN | F    | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ  |
+| ANA    | F    | PRES ANTONIO CARLOS - CENTRO - SÃO PAULO - SP  |
+| CARLA  | F    | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG    |
++--------+------+------------------------------------------------+
+
+
 SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'F' OR ENDERECO LIKE '%ESTACIO';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++--------+------+------------------------------------------------+
+| NOME   | SEXO | ENDERECO                                       |
++--------+------+------------------------------------------------+
+| CELIA  | F    | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ       |
+| LILIAN | F    | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ  |
+| ANA    | F    | PRES ANTONIO CARLOS - CENTRO - SÃO PAULO - SP  |
+| CARLA  | F    | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG    |
++--------+------+------------------------------------------------+
+
 
 /* AND - E*/
 SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'M' AND ENDERECO LIKE '%RJ';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------+------+----------------------------------------------+
+| NOME | SEXO | ENDERECO                                     |
++------+------+----------------------------------------------+
+| JOAO | M    | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ |
++------+------+----------------------------------------------+
+
+
 SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'F' AND ENDERECO LIKE '%ESTACIO';
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
+Empty set (0,00 sec)
 
 
 /*Count(*), Group By, Performance com operadores lógicos*/
 /*Contando os registros de uma tabela*/
 SELECT COUNT(*) AS "Quantindade de registros da tabela" FROM CLIENTE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------------------------------------+
+| Quantindade de registros da tabela |
++------------------------------------+
+|                                  6 |
++------------------------------------+
+
 
 /*Operador Group By*/
 SELECT SEXO, COUNT(*)FROM CLIENTE GROUP BY SEXO;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------+----------+
+| SEXO | COUNT(*) |
++------+----------+
+| M    |        2 |
+| F    |        4 |
++------+----------+
 
 
 /*Performance em operadores lógicos*/
