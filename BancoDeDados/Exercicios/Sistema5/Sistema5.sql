@@ -100,6 +100,18 @@ CREATE TABLE ENDERECO(
 
 /*CONSULTAR A DESCRIÇÃO DOS DADOS NO TERMINAL*/
 DESC ENDERECO;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| IDENDERECO | int         | NO   | PRI | NULL    | auto_increment |
+| RUA        | varchar(30) | NO   |     | NULL    |                |
+| BAIRRO     | varchar(30) | NO   |     | NULL    |                |
+| CIDADE     | varchar(30) | NO   |     | NULL    |                |
+| ESTADO     | char(2)     | NO   |     | NULL    |                |
+| ID_CLIENTE | int         | YES  | UNI | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+
 
 /*INSERINDO DADOS NA TABELA ENDEREÇO DO CLIENTE*/
 /*TABELA ENDEREÇO, COMO O ID É AUTO INCREMENTADO É NECESSÁRIOS APENAS DECLARAR COMO NULL,
@@ -113,7 +125,6 @@ INSERT INTO ENDERECO VALUES(NULL,'Avenida Sílvio ','CENTRO','RIO DE JANEIRO','R
 
 /*CONSULTAR OS DADOS DA TABELA ENDEREÇO DO CLIENTE*/
 SELECT * FROM ENDERECO;
-
 /*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +------------+-----------------+--------+----------------+--------+------------+
 | IDENDERECO | RUA             | BAIRRO | CIDADE         | ESTADO | ID_CLIENTE |
@@ -142,6 +153,16 @@ CREATE TABLE TELEFONE(
 
 /*CONSULTAR A DESCRIÇÃO DOS DADOS NO TERMINAL*/
 DESC TELEFONE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------------+-------------------------+------+-----+---------+----------------+
+| Field      | Type                    | Null | Key | Default | Extra          |
++------------+-------------------------+------+-----+---------+----------------+
+| IDTELEFONE | int                     | NO   | PRI | NULL    | auto_increment |
+| TIPO       | enum('RES','COM','CEL') | NO   |     | NULL    |                |
+| NUMERO     | varchar(15)             | NO   |     | NULL    |                |
+| ID_CLIENTE | int                     | YES  | MUL | NULL    |                |
++------------+-------------------------+------+-----+---------+----------------+
+
 
 /*INSERINDO DADOS NA TABELA TELEFONE DO CLIENTE*/
 /*TABELA TELEFONE, COMO O ID É AUTO INCREMENTADO É NECESSÁRIOS APENAS DECLARAR COMO NULL,
@@ -160,8 +181,8 @@ DESC TELEFONE;
 
 /*CONSULTAR OS DADOS NA TABELA TELEFONE DO CLIENTE*/
 SELECT * FROM TELEFONE;
-
 /*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------------+------+-----------+------------+
 | IDTELEFONE | TIPO | NUMERO    | ID_CLIENTE |
 +------------+------+-----------+------------+
 |          1 | RES  | 45853033  |          1 |
