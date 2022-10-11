@@ -203,12 +203,36 @@ SELECT * FROM TELEFONE;
 
 /*PROJETANDO UMA COLUNA NOW - DATA ATUAL (PROGRAMAR TABELA)*/
 SELECT NOW() AS DATA_ATUAL;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++---------------------+
+| DATA_ATUAL          |
++---------------------+
+| 2022-10-11 14:08:59 |
++---------------------+
+
 
 /*PROJETANDO UMA COLUNA DE SOMA (PROGRAMAR TABELA)*/
 SELECT 2+2 AS SOMA;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------+
+| SOMA |
++------+
+|    4 |
++------+
 
 /*MOSTRAR COLUNAS DE PROGRAMAÇÃO E VINDOS DE UMA TABELA - MISTURAR*/
 SELECT 2+2 AS SOMA, NOME, NOW() FROM CLIENTE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++------+----------+---------------------+
+| SOMA | NOME     | NOW()               |
++------+----------+---------------------+
+|    4 | GILSON   | 2022-10-11 14:10:23 |
+|    4 | FERNANDO | 2022-10-11 14:10:23 |
+|    4 | MARIA    | 2022-10-11 14:10:23 |
+|    4 | CAROL    | 2022-10-11 14:10:23 |
+|    4 | JOEL     | 2022-10-11 14:10:23 |
+|    4 | GABRIELA | 2022-10-11 14:10:23 |
++------+----------+---------------------+
 
 /*PROJETANDO DADOS E CONSULTANDO A TABELA - O QUE QUER MOSTRAR NA TELA*/
 SELECT NOME, SEXO, TIPO, TELEFONE, BAIRRO
@@ -217,16 +241,32 @@ SELECT NOME, SEXO, TIPO, TELEFONE, BAIRRO
 SELECT NOME, SEXO, EMAIL /*-> PROJEÇÃO*/
 FROM CLIENTE /*-> ORIGEM*/
 WHERE SEXO = 'F'; /*-> SELEÇÃO*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++----------+------+--------------------+
+| NOME     | SEXO | EMAIL              |
++----------+------+--------------------+
+| MARIA    | F    | MARIA@GMAIL.COM    |
+| CAROL    | F    | NULL               |
+| GABRIELA | F    | GABRILEA@GMAIL.COM |
++----------+------+--------------------+
 
 /*OUTRO EXEMPLO*/
 SELECT NUMERO /*--> PROJEÇÃO*/
 FROM TELEFONE /*--> ORIGEM*/
 WHERE TIPO = 'CEL'; /*--> SELEÇÃO*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
++-----------+
+| NUMERO    |
++-----------+
+| 921678801 |
+| 971406822 |
+| 990891200 |
++-----------+
 
 /*JUNÇÃO DE DUAS OU MAIS TABELAS - JOIN*/
 SELECT NOME, EMAIL, IDCLIENTE /*--> PROJEÇÃO*/
 FROM CLIENTE; /*--> ORIGEM*/
-
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +----------+--------------------+-----------+
 | NOME     | EMAIL              | IDCLIENTE |
 +----------+--------------------+-----------+
@@ -239,7 +279,8 @@ FROM CLIENTE; /*--> ORIGEM*/
 +----------+--------------------+-----------+
 
 SELECT ID_CLIENTE, BAIRRO, CIDADE /*--> PROJEÇÃO*/
-FROM ENDEREÇO; /*--> ORIGEM*/
+FROM ENDERECO; /*--> ORIGEM*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +------------+--------+----------------+
 | ID_CLIENTE | BAIRRO | CIDADE         |
 +------------+--------+----------------+
@@ -255,7 +296,7 @@ FROM ENDEREÇO; /*--> ORIGEM*/
 SELECT NOME, SEXO, BAIRRO, CIDADE /*--> PROJEÇÃO*/
 FROM CLIENTE, ENDERECO /*--> ORIGEM*/
 WHERE IDCLIENTE = ID_CLIENTE; /*--> JUNÇÃO*/
-
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +----------+------+--------+----------------+
 | NOME     | SEXO | BAIRRO | CIDADE         |
 +----------+------+--------+----------------+
@@ -272,6 +313,7 @@ SELECT NOME, SEXO, BAIRRO, CIDADE
 FROM CLIENTE, ENDERECO
 WHERE IDCLIENTE = ID_CLIENTE /*--> TABELA VERDADE*/
 AND SEXO = 'F'; /*--> TABELA VERDADE*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +----------+------+--------+----------------+
 | NOME     | SEXO | BAIRRO | CIDADE         |
 +----------+------+--------+----------------+
@@ -285,6 +327,7 @@ SELECT NOME, SEXO, BAIRRO, CIDADE
 FROM CLIENTE
 INNER JOIN ENDERECO
 ON IDCLIENTE = ID_CLIENTE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +----------+------+--------+----------------+
 | NOME     | SEXO | BAIRRO | CIDADE         |
 +----------+------+--------+----------------+
@@ -302,6 +345,7 @@ FROM CLIENTE /*--> ORIGEM*/
     INNER JOIN ENDERECO /*--> JUNÇÃO*/
     ON IDCLIENTE = ID_CLIENTE /*--> CONDIÇAO*/
 WHERE SEXO = 'F'; /*--> SELEÇAO*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/
 +----------+------+--------+----------------+
 | NOME     | SEXO | BAIRRO | CIDADE         |
 +----------+------+--------+----------------+
@@ -315,6 +359,7 @@ SELECT NOME, SEXO, EMAIL, TIPO, NUMERO /*--> PROJEÇÃO*/
 FROM CLIENTE /*--> ORIGEM*/
     INNER JOIN TELEFONE /*--> JUNÇÃO*/
     ON IDCLIENTE = ID_CLIENTE; /*--> CONDIÇAO*/
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/    
 +----------+------+--------------------+------+-----------+
 | NOME     | SEXO | EMAIL              | TIPO | NUMERO    |
 +----------+------+--------------------+------+-----------+
@@ -338,6 +383,9 @@ FROM CLIENTE
     ON CLIENTE.IDCLIENTE = ENDERECO.ID_CLIENTE
     INNER JOIN TELEFONE
     ON CLIENTE.IDCLIENTE = TELEFONE.ID_CLIENTE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/  
++----------+------+--------+----------------+------+-----------+
+| NOME     | SEXO | BAIRRO | CIDADE         | TIPO | NUMERO    |    
 +----------+------+--------+----------------+------+-----------+
 | GILSON   | M    | CENTRO | RIO DE JANEIRO | RES  | 45853033  |
 | GILSON   | M    | CENTRO | RIO DE JANEIRO | COM  | 35853033  |
@@ -359,6 +407,7 @@ FROM CLIENTE C
     ON C.IDCLIENTE = E.ID_CLIENTE
     INNER JOIN TELEFONE T
     ON C.IDCLIENTE = T.ID_CLIENTE;
+/*COPIA DA IMAGEM DO MYSQL CLIENT*/      
 +----------+------+--------+----------------+------+-----------+
 | NOME     | SEXO | BAIRRO | CIDADE         | TIPO | NUMERO    |
 +----------+------+--------+----------------+------+-----------+
@@ -383,6 +432,7 @@ FROM CLIENTE C
 -DCL: DATA CONTROL LANGUAGE
 -TCL: TRANSACTION CONTROL LANGUAGE*/        
 
+/********************************************************************************************************/
 
 /*COMANDOS DE DML*/
 /*INSERT*/
@@ -456,7 +506,6 @@ DESC PRODUTO;
 | VALOR_UNITARIO | int         | YES  |     | NULL    |                |
 | FRETE          | float(10,2) | NO   |     | NULL    |                |
 +----------------+-------------+------+-----+---------+----------------+
-
 
 /*MODIFY - PARECIDO COM O CHANGE*/
 /*ALTERAR O TIPO*/
