@@ -1,4 +1,5 @@
 /*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
+/*Abrir o mycli pelo terminal - mycli -u adison -p - "digitar a senha"*/
 --CRIAÇAO DO BANDO DE DADOS:
 CREATE DATABASE EXERCICIO;
 
