@@ -1,5 +1,5 @@
-/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
-/*Abrir o mycli pelo terminal - mycli -u adison -p - "digitar a senha"*/
+/*Abrir o workbanch pelo terminal - mysql -u adison -p digitar a senha*/
+/*Abrir o mycli pelo terminal - mycli -u adison -p digitar a senha*/
 /*Modelagem Física - Scripts de Banco*/
 /*Criando o banco de dados:*/
 CREATE DATABASE LIVRARIA;
@@ -145,17 +145,16 @@ WHERE (UF_DA_EDITORA = 'SP') OR (UF_DA_EDITORA = 'RJ') AND (SEXO_DO_AUTOR = 'Mas
 **Use Projeto;*/
 /*Operadores Lógicos*/
 /* OR - OU*/
-SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'F' OR ENDERECO LIKE '%RJ';
+SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'M' OR ENDERECO LIKE '%RJ';
 /*COPIA DA IMAGEM DO MYSQL CLIENT*/
-+--------+------+------------------------------------------------+
-| NOME   | SEXO | ENDERECO                                       |
-+--------+------+------------------------------------------------+
-| JOAO   | M    | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ   |
-| CELIA  | F    | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ       |
-| LILIAN | F    | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ  |
-| ANA    | F    | PRES ANTONIO CARLOS - CENTRO - SÃO PAULO - SP  |
-| CARLA  | F    | SAMUEL SILVA - CENTRO - BELO HORIZONTE - MG    |
-+--------+------+------------------------------------------------+
++--------+------+-----------------------------------------------+
+| NOME   | SEXO | ENDERECO                                      |
++--------+------+-----------------------------------------------+
+| JOAO   | M    | MAIA LACERDA - ESTACIO - RIO DE JANEIRO - RJ  |
+| CELIA  | F    | RIACHUELO - CENTRO - RIO DE JANEIRO - RJ      |
+| JORGE  | M    | OSCAR CURY - BOM RETIRO - PATOS DE MINAS - MG |
+| LILIAN | F    | SENADOR SOARES - TIJUCA - RIO DE JANEIRO - RJ |
++--------+------+-----------------------------------------------+
 
 
 SELECT NOME, SEXO, ENDERECO FROM CLIENTE WHERE SEXO = 'F' OR ENDERECO LIKE '%ESTACIO';

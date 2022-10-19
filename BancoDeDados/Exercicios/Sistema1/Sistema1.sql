@@ -1,5 +1,5 @@
-/*Abrir o workbanch pelo terminal - mysql -u adison -p - digitar a senha*/
-/*Abrir o mycli pelo terminal - mycli -u adison -p - "digitar a senha"*/
+/*Abrir o workbanch pelo terminal - mysql -u adison -p digitar a senha*/
+/*Abrir o mycli pelo terminal - mycli -u adison -p digitar a senha*/
 
 /*Criando o banco de dados - Modelagem Física - Scripts de Banco*/
 
