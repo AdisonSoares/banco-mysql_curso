@@ -1,10 +1,10 @@
 /*Abrir o workbanch pelo terminal - mysql -u adison -p digitar a senha*/
 /*Abrir o mycli pelo terminal - mycli -u adison -p digitar a senha*/
 
-/*PARA FAZER AS JUNÇÕES DE TABELAS O MAIS INDICADO É ESCOLHER COMO TABELA
-BASE A QUE MAIS TEM CONEXÕES, COMO NO EXEMPLO DO BANCO COMERCIO A TABELA
-CLIENTE TEM DUAS CONEXÕES A MELHOR PRA USAR COMO BASE É ELA, E COLOCAR
-NAS CONDIÇÃO ON A TABELA DE ORIGEM, NO CASO A TABELA IDCLIENTE*/
+/*O ; SERVE COMO DELIMITADOR, QUANDO SE TERMINA DE ESCREVER O COMANDO
+O SISTEMA SQL ESPERA ATÉ FINALIZAR COM ; E EXECUTA O QUE ESTÁ DO PONTO
+PARA CIMA, ALGUNS COMANDOS NÃO PRECISAM DE ; POIS NÃO SÃO COMANDOS SQL
+COMO EXEMPLO O COMANDO STATUS POIS É UM COMANDO DE INFRAESTRUTURA.*/
 
 /*O banco de dados será o Comercio*/
 USE COMERCIO;
@@ -337,7 +337,7 @@ ORDER BY 1;
 +-----------+----------+------+--------------------+------+-----------+------------+----------------+--------+
 28 rows in set (0,00 sec)
 
-/*ORDENANDO A VIEW*/
+/*ORDENANDO A */
 SELECT * FROM V_RELATORIO
 ORDER BY 1;
 +-----------+----------+------+--------------------+------+-----------+------------+----------------+--------+
