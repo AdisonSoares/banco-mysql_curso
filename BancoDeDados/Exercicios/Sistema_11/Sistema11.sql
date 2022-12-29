@@ -1,0 +1,173 @@
+/*Abrir o workbanch pelo terminal - mysql -u adison -p digitar a senha*/
+/*Abrir o mycli pelo terminal - mycli -u adison -p digitar a senha*/
+/*FUNÇÕES DE AGREGAÇÕES NUMÉRICAS*/
+
+/*BANCO DE DADOS UTILIZADO - PROJETO*/
+USE PROJETO;
+
+/*CRIAÇÃO DA TABELA PARA ARMAZENAR VENDAS POR TRIMESTRE*/
+CREATE TABLE VENDEDORES(
+	IDVENDEDOR INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	SEXO CHAR(1),
+	JANEIRO FLOAT(10,2),
+	FEVEREIRO FLOAT(10,2),
+	MARCO FLOAT(10,2)
+);
+
+/*INSERINDO DADOS*/
+INSERT INTO VENDEDORES VALUES(NULL, 'CARLOS','M',15841.50, 21963.81, 32483.43);
+INSERT INTO VENDEDORES VALUES(NULL, 'FERNANDA','F',19821.55, 31986.13, 47361.25);
+INSERT INTO VENDEDORES VALUES(NULL, 'ROBERTO','M',21150.80, 32004.21, 39852.34);
+INSERT INTO VENDEDORES VALUES(NULL, 'YARA','F',19640.11, 31900.10, 39860.02);
+INSERT INTO VENDEDORES VALUES(NULL, 'SABRINA','F',17540.83, 29085.40, 38073.20);
+INSERT INTO VENDEDORES VALUES(NULL, 'ALBERTO','M',30870.35, 44511.80, 51690.05);
+INSERT INTO VENDEDORES VALUES(NULL, 'RAFAEL','M',16357.60, 29063.04, 38645.00);
+INSERT INTO VENDEDORES VALUES(NULL, 'CLAUDIA','F',33547.11, 42589.22, 54962.61);
+
+/*MAX - TRAZER O VALOR MÁXIMO DE UMA COLUNA*/
+SELECT MAX(FEVEREIRO) AS MAIOR_FEV
+FROM VENDEDORES;
++-----------+
+| MAIOR_FEV |
++-----------+
+|  44511.80 |
++-----------+
+1 row in set (0,02 sec)
+
+/*MIN - TRAZER O VALOR MÍNIMO DE UMA COLUNA*/
+SELECT MIN(FEVEREIRO) AS MENOR_FEV
+FROM VENDEDORES;
++------------+
+| MENOR_FEV  |
++------------+
+|   21963.81 |
++------------+
+1 row in set (0,00 sec)
+
+/*AVG - TRAZER O VALOR MÉDIO DE UMA COLUNA*/
+SELECT AVG(FEVEREIRO) AS MEDIA_FEV
+FROM VENDEDORES;
++--------------+
+| MEDIA_FEV    |
++--------------+
+| 32887.963867 |
++--------------+
+1 row in set (0,00 sec)
+
+/*VÁRIAS FUNÇÕES*/
+SELECT MAX(JANEIRO) AS MAX_JAN,
+	   MIN(JANEIRO) AS MIN_JAN,
+	   AVG(JANEIRO) AS MEDIA_JAN
+FROM VENDEDORES;	   
++----------+----------+--------------+
+| MAX_JAN  | MIN_JAN  | MEDIA_JAN    |
++----------+----------+--------------+
+| 33547.11 | 15841.50 | 21846.231201 |
++----------+----------+--------------+
+1 row in set (0,00 sec)
+
+/*FUNÇÃO PARA TRUNCAR/CORTAR VALORES, PEDE O NÚMERO E AS CASA DECIMAIS DELA - TRUNCATE*/
+SELECT MAX(JANEIRO) AS MAX_JAN,
+	   MIN(JANEIRO) AS MIN_JAN,
+	   TRUNCATE(AVG(JANEIRO),2) AS MEDIA_JAN
+FROM VENDEDORES;
++----------+----------+-----------+
+| MAX_JAN  | MIN_JAN  | MEDIA_JAN |
++----------+----------+-----------+
+| 33547.11 | 15841.50 |  21846.23 |
++----------+----------+-----------+
+1 row in set (0,00 sec)
+
+/*AGREGANDO COM SUM() - SOMAS OS VALORES DE UMA COLUNA*/
+/*TOTAL VENDIDO EM JANEIRO*/
+SELECT SUM(JANEIRO) AS TOTAL_JAN
+FROM VENDEDORES;
++-----------+
+| TOTAL_JAN |
++-----------+
+| 174769.85 |
++-----------+
+1 row in set (0,01 sec)
+
+/*TOTAL DE VENDAS NO TRIMESTRE*/
+SELECT SUM(JANEIRO) AS TOTAL_JAN,
+       SUM(FEVEREIRO) AS TOTAL_FEV,
+       SUM(MARCO) AS TOTAL_MAR
+FROM VENDEDORES;
++-----------+-----------+-----------+
+| TOTAL_JAN | TOTAL_FEV | TOTAL_MAR |
++-----------+-----------+-----------+
+| 174769.85 | 263103.71 | 342927.90 |
++-----------+-----------+-----------+
+1 row in set (0,00 sec)
+
+/*VENDAS POR SEXO EM MARÇO*/
+SELECT SEXO, SUM(MARCO) AS TOTAL_MAR
+FROM VENDEDORES
+GROUP BY SEXO;
++------+-----------+
+| SEXO | TOTAL_MAR |
++------+-----------+
+| M    | 162670.82 |
+| F    | 180257.08 |
++------+-----------+
+2 rows in set (0,01 sec)
+
+/*SUBQUERIES - DENTRO DELA TEM A INNER QUERY QUE É RESOLVIDA PRIMEIRO QUE TUDO*/
+/*NOME DO VENDEDOR QUE VENDEU MENOS EM MARÇO E SEU NOME*/
+SELECT NOME, MARCO
+FROM VENDEDORES
+WHERE MARCO = (SELECT MIN(MARCO) FROM VENDEDORES);
++--------+----------+
+| NOME   | MARCO    |
++--------+----------+
+| CARLOS | 32483.43 |
++--------+----------+
+1 row in set (0,00 sec)
+
+/*NOME E VALOR DE QUEM VENDEU MAIS EM MARÇO*/
+SELECT NOME, MARCO
+FROM VENDEDORES
+WHERE MARCO = (SELECT MAX(MARCO) FROM VENDEDORES);
++---------+----------+
+| NOME    | MARCO    |
++---------+----------+
+| CLAUDIA | 54962.61 |
++---------+----------+
+1 row in set (0,00 sec)
+
+/*NOME DE QUEM VENDEU MAIS QUE O VALOR MÉDIO DE FEVEREIRO*/
+SELECT NOME, FEVEREIRO
+FROM VENDEDORES
+WHERE FEVEREIRO > (SELECT AVG(MARCO) FROM VENDEDORES);
++---------+-----------+
+| NOME    | FEVEREIRO |
++---------+-----------+
+| ALBERTO |  44511.80 |
++---------+-----------+
+1 row in set (0,00 sec)
+
+/*OPERAÇÕES EM LINHA - NAS TUPLAS*/
+/*MÉDIA SEMESTRAL DO VENDEDOR*/
+SELECT NOME,
+	   JANEIRO,
+	   FEVEREIRO,
+	   MARCO,
+	   (JANEIRO + FEVEREIRO + MARCO) AS "TOTAL",
+	   TRUNCATE((JANEIRO + FEVEREIRO + MARCO)/3,2) AS "MÉDIA"
+FROM VENDEDORES;	   
++----------+----------+-----------+----------+-----------+----------+
+| NOME     | JANEIRO  | FEVEREIRO | MARCO    | TOTAL     | MÉDIA    |
++----------+----------+-----------+----------+-----------+----------+
+| CARLOS   | 15841.50 |  21963.81 | 32483.43 |  70288.74 | 23429.58 |
+| FERNANDA | 19821.55 |  31986.13 | 47361.25 |  99168.93 | 33056.31 |
+| ROBERTO  | 21150.80 |  32004.21 | 39852.34 |  93007.35 | 31002.45 |
+| YARA     | 19640.11 |  31900.10 | 39860.02 |  91400.23 | 30466.74 |
+| SABRINA  | 17540.83 |  29085.40 | 38073.20 |  84699.43 | 28233.14 |
+| ALBERTO  | 30870.35 |  44511.80 | 51690.05 | 127072.20 |  42357.4 |
+| RAFAEL   | 16357.60 |  29063.04 | 38645.00 |  84065.64 | 28021.87 |
+| CLAUDIA  | 33547.11 |  42589.22 | 54962.61 | 131098.94 | 43699.64 |
++----------+----------+-----------+----------+-----------+----------+
+8 rows in set (0,01 sec)
+ 
