@@ -1,0 +1,85 @@
+/*Abrir o mycli pelo terminal - mycli -u adison -p digitar a senha*/
+/*MODELAGEM LÓGICA E FÍSICA*/
+/*TRIGGER DE AUDITORIA*/
+
+/*QUANDO - DATA ATUAL*/
+SELECT NOW();
+
+/*QUEM - USUÁRIO ATUAL*/
+SELECT CURRENT_USER();
+
+/*NOVO BANCO LOJA*/
+CREATE DATABASE LOJA;
+
+/*ATIVANDO O BANCO*/
+USE LOJA;
+
+/*TABELA PRODUTO*/
+CREATE TABLE PRODUTO(
+	IDPRODUTO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	VALOR FLOAT(10,2)
+);
+
+/*INSERINDO PRODUTOS*/
+INSERT INTO PRODUTO VALUES(NULL, 'CODIGO LIMPO', 65.00);
+INSERT INTO PRODUTO VALUES(NULL, 'MODELAGEM', 50.00);
+INSERT INTO PRODUTO VALUES(NULL, 'ARQUITETURA LIMPA', 75.00);
+INSERT INTO PRODUTO VALUES(NULL, 'LIVRO - MVC', 45.00);
+
+/*CRIANDO O BACKUP LÓGICO*/
+CREATE DATABASE BACKUP;
+
+/*ATIVANDO O BANCO*/
+USE BACKUP;
+
+/*TABELA BACKUP DO PRODUTO*/
+CREATE TABLE BKP_PRODUTO(
+	IDBACKUP INT PRIMARY KEY AUTO_INCREMENT,
+	IDPRODUTO INT,
+	NOME VARCHAR(30),
+	VALOR_ORIGINAL FLOAT(10,2),
+	VALOR_ALTERADO FLOAT(10,2),
+	DATA DATETIME,
+	USUARIO VARCHAR(30),
+	EVENTO VARCHAR(15)
+);
+
+/*VOLTANDO AO BANCO ANTERIO*/
+USE LOJA;
+
+/*CRIANDO TRIGGER - ALTERANDO O VALOR ORIGINAL É MOSTRADO VALOR ATUAL E ANTIGO, DATA DE ALTERAÇÃO E USUÁRIO QUE ALTEROU*/
+DELIMITER #
+CREATE TRIGGER AUDITORIA_PRODUTO
+AFTER UPDATE ON PRODUTO
+FOR EACH ROW
+BEGIN
+	INSERT INTO BACKUP.BKP_PRODUTO VALUES(NULL, OLD.IDPRODUTO, OLD.NOME, OLD.VALOR, NEW.VALOR, NOW(), CURRENT_USER(),'UPDATE');
+END #
+DELIMITER ;
+
+/*ATUALIZANDO PRODUTO - UPDATE*/
+UPDATE PRODUTO
+SET VALOR = 110.00
+WHERE IDPRODUTO = 4;
+
+/*CONSULTANDO TABELA DE PROTUDO*/
+SELECT * FROM PRODUTO;
++-----------+-------------------+--------+
+| IDPRODUTO | NOME              | VALOR  |
++-----------+-------------------+--------+
+|         1 | CODIGO LIMPO      |  65.00 |
+|         2 | MODELAGEM         |  50.00 |
+|         3 | ARQUITETURA LIMPA |  75.00 |
+|         4 | LIVRO - MVC       | 110.00 |
++-----------+-------------------+--------+
+4 rows in set (0,01 sec)
+
+/*CONSULTANDO TABELA DE BACKUP*/
+SELECT * FROM BACKUP.PRODUTO;
++----------+-----------+-------------+----------------+----------------+---------------------+------------------+--------+
+| IDBACKUP | IDPRODUTO | NOME        | VALOR_ORIGINAL | VALOR_ALTERADO | DATA                | USUARIO          | EVENTO |
++----------+-----------+-------------+----------------+----------------+---------------------+------------------+--------+
+|        1 |         4 | LIVRO - MVC |          45.00 |         110.00 | 2022-12-30 10:21:00 | adison@localhost | UPDATE |
++----------+-----------+-------------+----------------+----------------+---------------------+------------------+--------+
+1 row in set (0,00 sec)
