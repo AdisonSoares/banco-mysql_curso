@@ -1,10 +1,9 @@
-# Banco De Dados Completo - Prática na modelagem de banco de dados</br>
+# Banco De Dados Mysql - Prática na modelagem de banco de dados</br>
 
 
 ### APRESENTAÇÃO
 
-- Curso da plataforma Udemy com duração de 58 horas, ministrado pelo professor
-Felipe Mafra.</br>
+- Curso da plataforma Udemy, ministrado pelo professor Felipe Mafra.</br>
 
 - Sua proposta é ensinar, de forma simples, a introdução e desenvolvimento de banco
 de dados focado em SQL Server, MySQL e Oracle, com introdução nas linguagens T-SQL e PLSQL.
