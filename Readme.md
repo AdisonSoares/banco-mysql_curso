@@ -25,5 +25,5 @@ de dados focado em SQL Server, MySQL e Oracle, com introdução nas linguagens T
 - Generalização e Autorelacionamento</br>
 
 <h4 align="center"> 
-	🚧  Em construção...  🚧
+	🚧  Finalizado  🚧
 </h4>
